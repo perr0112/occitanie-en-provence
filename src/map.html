@@ -10,11 +10,7 @@
     <header>
       <a href="#">À PROPOS</a>
 
-      <img
-        src="./icons/logo.png"
-        alt="background"
-        class="background"
-      />
+      <img src="./icons/logo.png" alt="background" class="background" />
 
       <div class="menu"></div>
     </header>
@@ -64,6 +60,30 @@
       </div>
     </div>
     <div class="transition" data-active="false"></div>
+
+    <div class="sound">
+      <button id="toggle-sound">
+        <svg id="sound-on-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+          <path d="M2 10v3" />
+          <path d="M6 6v11" />
+          <path d="M10 3v18" />
+          <path d="M14 8v7" />
+          <path d="M18 5v13" />
+          <path d="M22 10v3" />
+        </svg>
+
+        <svg id="sound-off-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10V13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 9V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10 9V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 9V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 9V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 10V13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    
 
     <script type="module" src="./index.js"></script>
   </body>

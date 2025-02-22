@@ -146,6 +146,39 @@ window.addEventListener('click', (event) => {
 });
 
 /**
+ * Sounds
+ */
+const listener = new THREE.AudioListener();
+camera.add(listener);
+
+const sound = new THREE.Audio(listener);
+
+const audioLoader = new THREE.AudioLoader();
+audioLoader.load('sounds/nature.wav', (buffer) => {
+  sound.setBuffer(buffer);
+  sound.setLoop(true);
+  sound.setVolume(0.5);
+});
+
+const toggleButton = document.getElementById('toggle-sound');
+const soundOnIcon = document.getElementById('sound-on-icon');
+const soundOffIcon = document.getElementById('sound-off-icon');
+
+const toggleSound = () => {
+  if (sound.isPlaying) {
+    sound.pause();
+    soundOnIcon.style.display = 'none';
+    soundOffIcon.style.display = 'block';
+  } else {
+    sound.play();
+    soundOnIcon.style.display = 'block';
+    soundOffIcon.style.display = 'none';
+  }
+}
+
+toggleButton.addEventListener('click', toggleSound);
+
+/**
  * Animate
  */
 const clock = new THREE.Clock();
