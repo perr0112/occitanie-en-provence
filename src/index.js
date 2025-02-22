@@ -2,11 +2,13 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GUI from "lil-gui";
 
+import { generateModal } from "./utils/modal";
+
 /**
  * Debug
  */
 
-const gui = new GUI();
+// const gui = new GUI();
 
 /**
  * Base
@@ -24,35 +26,39 @@ const scene = new THREE.Scene();
 // Sphere
 const geometry = new THREE.SphereGeometry(50, 32, 32);
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load("./textures/environmentMaps/1.jpg")
-texture.wrapS = THREE.RepeatWrapping
+const texture = textureLoader.load("./textures/environmentMaps/1.jpg");
+texture.wrapS = THREE.RepeatWrapping;
 
 const materialSphere = new THREE.MeshBasicMaterial({
   map: texture,
-  side: THREE.DoubleSide
-})
-materialSphere.transparent = true
+  side: THREE.DoubleSide,
+});
+materialSphere.transparent = true;
 
-const sphere = new THREE.Mesh(geometry, materialSphere)
-scene.add(sphere)
+const sphere = new THREE.Mesh(geometry, materialSphere);
+scene.add(sphere);
 
 // Sprite
-const textureIcon = textureLoader.load("./icons/sprite.png");
 
-const materialIcon = new THREE.SpriteMaterial({ 
-  map: textureIcon, 
-  transparent: true,
-  alphaTest: 0.5
-});
+let textureIcon = textureLoader.load("./icons/sprite.png");
 
-const sprite = new THREE.Sprite(materialIcon);
-console.log(sprite);
+const addSprite = (position, name) => {
+  const materialIcon = new THREE.SpriteMaterial({
+    map: textureIcon,
+    transparent: true,
+    alphaTest: 0.5,
+  });
+  
+  let sprite = new THREE.Sprite(materialIcon);
+  sprite.position.copy(position);
+  sprite.name = name;
+  // sprite.position.copy(position.clone().normalize().multiplyScalar(30));
+  
+  scene.add(sprite);
+}
 
-const position = new THREE.Vector3(5, 0, 0);
+addSprite(new THREE.Vector3(3, 0, 0), 'Alyssum Murale');
 
-sprite.position.copy(position);
-
-scene.add(sprite);
 
 /**
  * Sizes
@@ -95,8 +101,8 @@ scene.add(camera);
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.rotateSpeed = 0.4;
-controls.enableZoom = false
-controls.enablePan = false
+controls.enableZoom = false;
+controls.enablePan = false;
 
 /**
  * Renderer
@@ -108,12 +114,65 @@ renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 /**
+ * Raycaster
+ */
+const raycaster = new THREE.Raycaster();
+
+const mouse = new THREE.Vector2();
+
+window.addEventListener('mousemove', (event) => {
+  mouse.x = (event.clientX / sizes.width) * 2 - 1;
+  mouse.y = -(event.clientY / sizes.height) * 2 + 1;
+});
+
+// Modal
+const modal = document.querySelector('.modal')
+const transition = document.querySelector('.transition')
+
+window.addEventListener('click', (event) => {
+  // const intersects = raycaster.intersectObjects([sprite]);
+  const intersects = raycaster.intersectObjects(scene.children);
+  // console.log(intersects)
+  // if (intersects.length > 0) {
+  //   console.log('Sprite clicked');
+  //   console.log(currentIntersect);
+  // }
+  intersects.forEach((intersect) => {
+    if (intersect.object.type === 'Sprite') {
+      console.log(intersect.object.name)
+      generateModal(modal, transition, intersect.object.name)
+    }
+  })
+});
+
+/**
  * Animate
  */
 const clock = new THREE.Clock();
 
+let currentIntersect = null;
+
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
+
+  // Cast a ray
+  raycaster.setFromCamera(mouse, camera)
+
+  const spritesClickable = [];
+  const intersects = raycaster.intersectObjects(spritesClickable);
+
+  if (intersects.length) {
+    if (currentIntersect) {
+      console.log("mouse enter");
+    }
+    console.log('==', intersects)
+    currentIntersect = intersects[0];
+  } else {
+    if (currentIntersect) {
+      console.log("mouse leave");
+    }
+    currentIntersect = null;
+  }
 
   // Update controls
   controls.update();
