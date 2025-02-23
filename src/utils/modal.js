@@ -1,10 +1,15 @@
 import gsap from "gsap"
+import CustomEase from "gsap/CustomEase"
 
 import { findPlant } from "../data/plants"
 
+gsap.registerPlugin(CustomEase)
+
+CustomEase.create("primary-ease", "0.62, 0.05, 0.01, 0.99")
+
 const BASIC_DURATION = 1.2
 
-const generateModal = (modal, transition, name) => {
+const transitionIn = (modal, transition, name) => {
     if (!modal || !transition || !name) return;
 
     const plant = findPlant(name)
@@ -15,7 +20,7 @@ const generateModal = (modal, transition, name) => {
 
     const tl = gsap.timeline({
         defaults: {
-            ease: "expo.inOut",
+            ease: "primary-ease",
             duration: BASIC_DURATION
         }
     })
@@ -24,18 +29,63 @@ const generateModal = (modal, transition, name) => {
         cursor: 'progress'
     })
 
-    transition.dataset.active = true
+    tl.to(transition, {
+        y: '-100%'
+    })
 
     tl.set(modal, {
         autoAlpha: 1
-    }, BASIC_DURATION)
+    }, '>')
 
-    tl.to(modal, {
-
+    tl.to(transition, {
+        y: '-200%'
     })
 
+    tl.set('html', {
+        cursor: 'default'
+    }, `-=${BASIC_DURATION / 2}`)
+
+    tl.set(transition, {
+        y: '100%'
+    })
+}
+
+const transitionOut = (modal, transition) => {
+    if (!modal || !transition) return;
+
+    const tl = gsap.timeline({
+        defaults: {
+            ease: "primary-ease",
+            duration: BASIC_DURATION
+        }
+    })
+
+    tl.set('html', {
+        cursor: 'progress'
+    })
+
+    tl.to(transition, {
+        y: '-100%'
+    })
+
+    tl.set(modal, {
+        autoAlpha: 0
+    }, '>')
+
+    tl.to(transition, {
+        y: '-200%'
+    })
+
+    tl.set('html', {
+        cursor: 'default'
+    }, `-=${BASIC_DURATION / 2}`)
+
+    tl.set(transition, {
+        y: '100%'
+    })
 }
 
 export {
-    generateModal
+    transitionIn,
+    transitionOut
 }

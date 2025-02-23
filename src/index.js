@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GUI from "lil-gui";
 
-import { generateModal } from "./utils/modal";
+import { transitionIn, transitionOut } from './utils/modal';
 
 /**
  * Debug
@@ -126,11 +126,10 @@ window.addEventListener('mousemove', (event) => {
 });
 
 // Modal
-const modal = document.querySelector('.modal')
-const transition = document.querySelector('.transition')
+const modal = document.querySelector('.content')
+const transitionElement = document.querySelector('.transition')
 
 window.addEventListener('click', (event) => {
-  // const intersects = raycaster.intersectObjects([sprite]);
   const intersects = raycaster.intersectObjects(scene.children);
   // console.log(intersects)
   // if (intersects.length > 0) {
@@ -140,10 +139,30 @@ window.addEventListener('click', (event) => {
   intersects.forEach((intersect) => {
     if (intersect.object.type === 'Sprite') {
       console.log(intersect.object.name)
-      generateModal(modal, transition, intersect.object.name)
+      transitionIn(modal, transitionElement, intersect.object.name)
+      modal.dataset.active = true
     }
   })
 });
+
+// Close modal
+const closeModal = document.querySelectorAll('.close-modal')
+closeModal.forEach((el) => {
+  el.addEventListener('click', () => {
+    if (modal.dataset.active === "true") {
+      transitionOut(modal, transitionElement);
+      modal.dataset.active = false
+    }
+  })
+})
+
+window.addEventListener('keydown', (e) => {
+  console.log('e', e)
+  if (modal.dataset.active === "true") {
+    transitionOut(modal, transitionElement)
+    modal.dataset.active = false
+  }
+})
 
 /**
  * Sounds
@@ -183,29 +202,13 @@ toggleButton.addEventListener('click', toggleSound);
  */
 const clock = new THREE.Clock();
 
-let currentIntersect = null;
+// let currentIntersect = null;
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
   // Cast a ray
   raycaster.setFromCamera(mouse, camera)
-
-  const spritesClickable = [];
-  const intersects = raycaster.intersectObjects(spritesClickable);
-
-  if (intersects.length) {
-    if (currentIntersect) {
-      console.log("mouse enter");
-    }
-    console.log('==', intersects)
-    currentIntersect = intersects[0];
-  } else {
-    if (currentIntersect) {
-      console.log("mouse leave");
-    }
-    currentIntersect = null;
-  }
 
   // Update controls
   controls.update();
