@@ -104,5 +104,6 @@ const updateInformations = (modal, plant) => {
 
 export {
     transitionIn,
-    transitionOut
+    transitionOut,
+    BASIC_DURATION
 }

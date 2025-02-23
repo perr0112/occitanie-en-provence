@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GUI from "lil-gui";
 
-import { transitionIn, transitionOut } from './utils/modal';
+import { BASIC_DURATION, transitionIn, transitionOut } from './utils/modal';
 import { changeTexture } from "./utils/scene";
 
 /**
@@ -177,8 +177,15 @@ const updateSprites = (sceneIndex) => {
 
 
 toggleViewElement.addEventListener('click', () => {
-  changeTexture(materialSphere, texturePaths, textureLoader, removeSprites, updateSprites)
-})
+  toggleViewElement.style.pointerEvents = 'none';
+
+  changeTexture(materialSphere, texturePaths, textureLoader, removeSprites, updateSprites);
+
+  setTimeout(() => {
+    toggleViewElement.style.pointerEvents = 'auto';
+  }, BASIC_DURATION * 1000);
+});
+
 
 // Open modal
 
