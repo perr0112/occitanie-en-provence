@@ -15,21 +15,51 @@
       <div class="menu"></div>
     </header>
 
+    <div class="information-scene" data-active="true">
+      <div class="scene__text">
+        <div class="icons">
+          <div class="icons__circle">
+            <div class="c" style="--opacity: 0.2"></div>
+            <div class="c" style="--opacity: 0.4"></div>
+            <div class="c" style="--opacity: 0.7"></div>
+          </div>
+
+          <div class="o"></div>
+        </div>
+
+        <p>DRAG IN 360° TO NAVIGATE</p>
+
+        <div class="scene__btn">
+          GOT IT!
+          <!-- <svg
+            width="15"
+            height="15"
+            viewBox="0 0 7 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.751312 1.46172C0.740514 1.66396 0.811939 1.86102 0.9481 2.00926L4.52565 6.14729L0.9481 10.2853L6.2675 6.21111C6.26763 6.20962 6.26775 6.20812 6.26787 6.20663L6.26836 6.20075L6.26836 6.20009C6.28241 6.00205 6.21739 5.80527 6.08571 5.65453C6.08552 5.65431 6.08533 5.65409 6.08514 5.65388L2.08108 1.02418C1.9532 0.868818 1.76768 0.770212 1.5661 0.752683L1.56513 0.752599L1.56513 0.752601C1.36285 0.735805 1.16227 0.800826 1.00845 0.934135L1.0075 0.93496L1.0075 0.934962C0.855189 1.06831 0.761734 1.25783 0.751312 1.46172ZM0.751312 1.46172C0.751305 1.46186 0.751298 1.46201 0.75129 1.46215L1.00097 1.47477L0.751335 1.4613C0.751327 1.46144 0.75132 1.46158 0.751312 1.46172Z"
+              fill="#FFD657"
+              stroke="#FFD657"
+              stroke-width="0.5"
+            />
+          </svg> -->
+          <i class="arrow" title="arrow icon"></i>
+        </div>
+      </div>
+    </div>
 
     <div class="toggle-view circle-outer" data-active="true">
-        <div class="circle-inner">
-          Changer <br /> de vue
-        </div>
+      <div class="circle-inner">
+        Changer <br />
+        de vue
       </div>
     </div>
 
     <canvas class="webgl"></canvas>
     <div class="content" data-active="false">
-      <img
-        src="./plants/background.png"
-        alt="background"
-        class="background"
-      />
+      <img src="./plants/background.png" alt="background" class="background" />
       <div class="modal">
         <div class="modal__header">
           <div class="header__icon close-modal">
@@ -47,20 +77,6 @@
             </svg>
           </div>
           <img src="./plants/lavande/cover.png" alt="cover" class="cover" />
-          
-          <!-- <h3 class="header__title title">La Lavande</h3> -->
-          
-          <!-- <div class="slider">
-            <div class="slider__container">
-              <h3 class="header__title title t-1">
-                La Lavande
-              </h3>
-
-              <h3 class="header__title title t-2">
-                La Lavande
-              </h3>
-            </div>
-          </div> -->
 
           <div id="animated-text-strip">
             <span class="marquee"></span>
@@ -68,7 +84,6 @@
             <span class="marquee"></span>
             <span class="marquee"></span>
           </div>
-          
         </div>
 
         <div class="modal__content">
@@ -77,14 +92,7 @@
             <br />
             de <span></span>
           </p>
-          <p class="content__desc">
-            Nous utilisons la lavande fine particulièrement pour ses propriétés
-            apaisantes et son parfum délicat. Cet ingrédient est au cœur de
-            notre gamme « Soin Corps », par exemple dans la composition de notre
-            eau de Cologne et bain moussant. Faisant partie d’un complexe de
-            différentes huiles essentielles, la lavande se trouve également dans
-            certains de nos produits d’aromachologie.
-          </p>
+          <p class="content__desc"></p>
         </div>
       </div>
     </div>
@@ -92,7 +100,17 @@
 
     <div class="sound">
       <button id="toggle-sound">
-        <svg id="sound-on-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+        <svg
+          id="sound-on-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="display: none"
+        >
           <path d="M2 10v3" />
           <path d="M6 6v11" />
           <path d="M10 3v18" />
@@ -101,13 +119,54 @@
           <path d="M22 10v3" />
         </svg>
 
-        <svg id="sound-off-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 10V13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M6 9V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M10 9V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M14 9V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18 9V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M22 10V13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg
+          id="sound-off-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2 10V13"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M6 9V14"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M10 9V14"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M14 9V14"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M18 9V14"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M22 10V13"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </button>
     </div>

@@ -58,9 +58,6 @@ const addSprite = (position, name) => {
   scene.add(sprite);
 }
 
-addSprite(new THREE.Vector3(5, -1, -2.75), 'lavande');
-addSprite(new THREE.Vector3(4, -1, 0), 'alyssum-murale');
-
 /**
  * Sizes
  */
@@ -283,3 +280,23 @@ const tick = () => {
 };
 
 tick();
+
+const informationScene = document.querySelector('.information-scene');
+const informationBtnScene = informationScene.querySelector('.scene__btn');
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (informationScene && informationScene.getAttribute('data-active') === 'true') {
+    toggleViewElement.classList.add('hidden');
+  }
+});
+
+informationBtnScene.addEventListener('click', () => {
+  informationScene.dataset.active = "false";
+
+  setTimeout(() => {
+    addSprite(new THREE.Vector3(5, -1, -2.75), 'lavande');
+    addSprite(new THREE.Vector3(4, -1, 0), 'alyssum-murale');
+    
+    toggleViewElement.classList.remove('hidden');
+  }, BASIC_DURATION * 50)
+})
