@@ -58,8 +58,8 @@ const addSprite = (position, name) => {
   scene.add(sprite);
 }
 
-addSprite(new THREE.Vector3(5, -1, -2.75), 'La Lavande');
-addSprite(new THREE.Vector3(4, -1, 0), 'Alyssum Murale');
+addSprite(new THREE.Vector3(5, -1, -2.75), 'lavande');
+addSprite(new THREE.Vector3(4, -1, 0), 'alyssum-murale');
 
 /**
  * Sizes
@@ -143,15 +143,15 @@ const texturePaths = [
 
 const sceneSprites = [
   [ // scène 1.jpg
-    { position: new THREE.Vector3(5, -1, -2.75), name: "La Lavande" },
-    { position: new THREE.Vector3(4, -1, 0), name: "Alyssum Murale" }
+    { position: new THREE.Vector3(5, -1, -2.75), name: "lavande" },
+    { position: new THREE.Vector3(4, -1, 0), name: "alyssum-murale" }
   ],
   [ // scène 2.jpg
-    { position: new THREE.Vector3(-5, 0, -1), name: "La Lavande" },
-    { position: new THREE.Vector3(1, -1, 2.75), name: "Citron Caviar" }
+    { position: new THREE.Vector3(-5, 0, -1), name: "lavande" },
+    { position: new THREE.Vector3(1, -1, 2.75), name: "citron-caviar" }
   ],
   [ // scène 3.jpg
-    { position: new THREE.Vector3(1, -2, 4), name: 'Bambou nain' }
+    { position: new THREE.Vector3(1, -2, 4), name: 'bambou-nain' }
   ]
 ];
 
