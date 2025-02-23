@@ -10,7 +10,7 @@
     <header>
       <a href="#">À PROPOS</a>
 
-      <img src="./icons/logo.png" alt="background" class="background" />
+      <img src="./icons/logo.png" alt="background" class="close-modal" />
 
       <div class="menu"></div>
     </header>
@@ -24,7 +24,7 @@
       />
       <div class="modal">
         <div class="modal__header">
-          <div class="header__icon">
+          <div class="header__icon close-modal">
             <svg
               viewBox="0 0 15 15"
               fill="none"
@@ -39,7 +39,28 @@
             </svg>
           </div>
           <img src="./plants/lavande/cover.png" alt="cover" class="cover" />
-          <h3 class="header__title title">La Lavande</h3>
+          
+          <!-- <h3 class="header__title title">La Lavande</h3> -->
+          
+          <!-- <div class="slider">
+            <div class="slider__container">
+              <h3 class="header__title title t-1">
+                La Lavande
+              </h3>
+
+              <h3 class="header__title title t-2">
+                La Lavande
+              </h3>
+            </div>
+          </div> -->
+
+          <div id="animated-text-strip">
+            <span class="marquee">La Lavande&nbsp;</span>
+            <span class="marquee">La Lavande&nbsp;</span>
+            <span class="marquee">La Lavande&nbsp;</span>
+            <span class="marquee">La Lavande&nbsp;</span>
+          </div>
+          
         </div>
 
         <div class="modal__content">
@@ -59,7 +80,7 @@
         </div>
       </div>
     </div>
-    <div class="transition" data-active="false"></div>
+    <div class="transition"></div>
 
     <div class="sound">
       <button id="toggle-sound">
@@ -82,8 +103,6 @@
         </svg>
       </button>
     </div>
-    
-    
 
     <script type="module" src="./index.js"></script>
   </body>
