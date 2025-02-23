@@ -29,6 +29,9 @@ const transitionIn = (modal, transition, name) => {
         cursor: 'progress'
     })
 
+    // add plant informations to modal content
+    updateInformations(modal, plant)
+
     tl.to(transition, {
         y: '-100%'
     })
@@ -83,6 +86,20 @@ const transitionOut = (modal, transition) => {
     tl.set(transition, {
         y: '100%'
     })
+}
+
+const updateInformations = (modal, plant) => {
+    const { name, title, description } = plant;
+
+    const marquees = modal.querySelectorAll('.marquee')
+    const contentTitle = modal.querySelector('.content__title span')
+    const contentDescription = modal.querySelector('.content__desc')
+    const imgCover = modal.querySelector('.modal__header img.cover')
+
+    marquees.forEach((marquee) => marquee.innerHTML = title + '&nbsp;' )
+    contentTitle.innerHTML = title
+    contentDescription.innerHTML = description
+    imgCover.src = `./plants/${name}/cover.png`
 }
 
 export {
