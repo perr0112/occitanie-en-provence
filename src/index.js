@@ -3,6 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GUI from "lil-gui";
 
 import { transitionIn, transitionOut } from './utils/modal';
+import { changeTexture } from "./utils/scene";
 
 /**
  * Debug
@@ -57,8 +58,8 @@ const addSprite = (position, name) => {
   scene.add(sprite);
 }
 
-addSprite(new THREE.Vector3(3, 0, 0), 'Alyssum Murale');
-
+addSprite(new THREE.Vector3(5, -1, -2.75), 'La Lavande');
+addSprite(new THREE.Vector3(4, -1, 0), 'Alyssum Murale');
 
 /**
  * Sizes
@@ -129,6 +130,58 @@ window.addEventListener('mousemove', (event) => {
 const modal = document.querySelector('.content')
 const transitionElement = document.querySelector('.transition')
 
+// Toggle view
+const toggleViewElement = document.querySelector('.toggle-view')
+
+const BASE_TEXTURE_PATHS = "./textures/environmentMaps";
+
+const texturePaths = [
+  `${BASE_TEXTURE_PATHS}/1.jpg`,
+  `${BASE_TEXTURE_PATHS}/2.jpg`,
+  `${BASE_TEXTURE_PATHS}/3.jpg`,
+];
+
+const sceneSprites = [
+  [ // scène 1.jpg
+    { position: new THREE.Vector3(5, -1, -2.75), name: "La Lavande" },
+    { position: new THREE.Vector3(4, -1, 0), name: "Alyssum Murale" }
+  ],
+  [ // scène 2.jpg
+    { position: new THREE.Vector3(-5, 0, -1), name: "La Lavande" },
+    { position: new THREE.Vector3(1, -1, 2.75), name: "Citron Caviar" }
+  ],
+  [ // scène 3.jpg
+    { position: new THREE.Vector3(1, -2, 4), name: 'Bambou nain' }
+  ]
+];
+
+const removeSprites = () => {
+  const children = scene.children
+
+  console.log(scene, children)
+
+  scene.children
+    .filter((c) => c.type === "Sprite")
+    .forEach((sprite) => {
+      if (sprite.material) sprite.material.dispose();
+      scene.remove(sprite);
+    })
+}
+
+const updateSprites = (sceneIndex) => {
+  console.log(sceneIndex, sceneSprites[sceneIndex]);
+  const newSprites = sceneSprites[sceneIndex];
+
+  newSprites.forEach((sprite) => addSprite(sprite.position, sprite.name))
+};
+
+
+toggleViewElement.addEventListener('click', () => {
+  changeTexture(materialSphere, texturePaths, textureLoader, removeSprites, updateSprites)
+})
+
+// Open modal
+
 window.addEventListener('click', (event) => {
   const intersects = raycaster.intersectObjects(scene.children);
   // console.log(intersects)
@@ -141,6 +194,7 @@ window.addEventListener('click', (event) => {
       console.log(intersect.object.name)
       transitionIn(modal, transitionElement, intersect.object.name)
       modal.dataset.active = true
+      toggleViewElement.dataset.active = false
     }
   })
 });
@@ -152,6 +206,7 @@ closeModal.forEach((el) => {
     if (modal.dataset.active === "true") {
       transitionOut(modal, transitionElement);
       modal.dataset.active = false
+      toggleViewElement.dataset.active = true
     }
   })
 })
@@ -160,6 +215,7 @@ window.addEventListener('keydown', (e) => {
   if (modal.dataset.active === "true" && e.code === "Escape") {
     transitionOut(modal, transitionElement)
     modal.dataset.active = false
+    toggleViewElement.dataset.active = true
   }
 })
 

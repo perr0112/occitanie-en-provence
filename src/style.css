@@ -38,6 +38,8 @@
   --default-font: AvenirNextLTPro, Arial, Helvetica, sans-serif;
 
   --text-color: #060524;
+  --toggle-view-color: #FFD657;
+  --toggle-view-color-hovered: #deb129;
 }
 
 @media screen and (max-width: 479px) {
@@ -101,6 +103,7 @@ body.overflow-hidden {
   top: 100%;
   left: 0;
   will-change: transform;
+  z-index: 999;
   /* transition: transform var(--basic-duration) var(--main-transition); */
 }
 
@@ -351,6 +354,61 @@ Sounds
 #toggle-sound svg {
   width: 100%;
   height: 100%;
+}
+
+/*
+***************
+Toggle view
+***************
+*/
+
+.toggle-view {
+  width: auto;
+  aspect-ratio: 1;
+  position: fixed;
+  bottom: var(--l);
+  left: 50%;
+  z-index: 10;
+  
+  opacity: 1;
+  visibility: visible;
+  font-size: var(--s);
+  transform: translateX(-50%);
+  padding: calc(var(--xs) * 1.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 3px solid var(--toggle-view-color);
+  cursor: pointer;
+
+  transition: all calc(var(--basic-duration) * 2) var(--main-transition);
+}
+
+.toggle-view[data-active="false"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.circle-inner {
+  padding: var(--l);
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--toggle-view-color);
+  text-transform: uppercase;
+
+  transition: all var(--basic-duration) var(--main-transition);
+}
+
+.toggle-view:hover .circle-inner {
+  background-color: var(--toggle-view-color-hovered);
 }
 
 /* Media queries */
