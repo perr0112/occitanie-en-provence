@@ -157,8 +157,7 @@ closeModal.forEach((el) => {
 })
 
 window.addEventListener('keydown', (e) => {
-  console.log('e', e)
-  if (modal.dataset.active === "true") {
+  if (modal.dataset.active === "true" && e.code === "Escape") {
     transitionOut(modal, transitionElement)
     modal.dataset.active = false
   }
