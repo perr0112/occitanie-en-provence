@@ -147,10 +147,10 @@ img.logo {
 .body__btn::after {
   content: '';
   width: calc(100% + 2px);
-  height: 100%;
+  height: calc(100% + 2px);
   position: absolute;
   background-color: var(--toggle-view-color);
-  top: 100%;
+  top: calc(100% + 1px);
   left: -1px;
   z-index: -1;
   will-change: transform;
