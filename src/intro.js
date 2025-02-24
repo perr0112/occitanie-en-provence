@@ -112,6 +112,7 @@ const changeText = () => {
 
 const transition = () => {
     const href = window.location.origin + "/map"
+    console.log(href, window, window.location)
     const transition = document.querySelector('.transition-experience')
 
     const tl = gsap.timeline({
@@ -128,7 +129,7 @@ const transition = () => {
     tl.to(transition, {
         y: '-100%',
         onComplete: () => {
-            window.location.href = href;
+            // window.location.href = href;
         }
     })
 }
