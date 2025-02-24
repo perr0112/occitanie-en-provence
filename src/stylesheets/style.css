@@ -159,6 +159,14 @@ Header
 ***************
 */
 
+img.logo {
+  position: fixed;
+  z-index: 999999;
+  top: var(--m);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 header {
   position: fixed;
   z-index: 9999;
@@ -317,6 +325,7 @@ Modal
   font-size: var(--m);
   color: var(--text-color);
   font-weight: 400;
+  transition: all calc(var(--basic-duration) * 1.5) var(--main-transition);
 }
 
 .modal__content p.content__desc {
@@ -324,6 +333,10 @@ Modal
   line-height: 150%;
   color: var(--text-color);
   font-size: var(--s);
+}
+
+p.content__desc .word-article {
+  transition: opacity calc(var(--basic-duration) * 1.5) var(--main-transition);
 }
 
 p.content__title span {

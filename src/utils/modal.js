@@ -85,16 +85,15 @@ const transitionIn = (modal, transition, name) => {
         y: '100%'
     })
 
-    tl.fromTo('.modal__content p', {
-        opacity: 0
-    }, {
-        opacity: 1,
-        stagger: 0.2,
-        onComplete: () => {
-            document.documentElement.style.setProperty("--opacity-span-after-element", "1");
-        }
-    // }, `-=${BASIC_DURATION}`)
-    }, `-=${BASIC_DURATION / 2}`)
+    // tl.fromTo('.modal__content p.content__title', {
+    //     opacity: 0
+    // }, {
+    //     opacity: 1,
+    //     onComplete: () => {
+    //         document.documentElement.style.setProperty("--opacity-span-after-element", "1");
+    //     }
+    // // }, `-=${BASIC_DURATION}`)
+    // }, `-=${BASIC_DURATION / 2}`)
 }
 
 const transitionOut = (modal, transition) => {
@@ -148,11 +147,52 @@ const updateInformations = (modal, plant) => {
     const imgCover = modal.querySelector('.modal__header img.cover')
 
     marquees.forEach((marquee) => marquee.innerHTML = title + '&nbsp;' )
+    
     contentTitle.innerHTML = subtitle
+    // contentDescription.innerHTML = description
     contentDescription.innerHTML = description
+        .split(' ')
+        .map(word => `<span class="word-article" style="opacity: 0;">${word}</span>`)
+        .join(' ');
+
     imgCover.src = `./plants/${name}/cover.png`
     imgCover.alt = `${title}`
+
+    setTimeout(() => {
+        animateDescription(contentDescription);
+    }, 1300)
 }
+
+const animateDescription = (element) => {
+    const words = element.querySelectorAll('.word-article');
+    const tl = gsap.timeline({
+        defaults: {
+            ease: "primary-ease",
+            duration: BASIC_DURATION
+        }
+    })
+
+    tl.to('span.marquee', {
+        opacity: 1
+    })
+
+    tl.to('.modal__content p.content__title',
+    {
+        opacity: 1,
+        onComplete: () => {
+            document.documentElement.style.setProperty("--opacity-span-after-element", "1");
+        }
+    }, -1)
+    
+    tl.fromTo( words,
+        { opacity: 0 },
+        {
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.05,
+        }
+    , -0.5);
+};
 
 export {
     transitionIn,
