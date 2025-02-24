@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GUI from "lil-gui";
+import gsap from "gsap";
 
 import { BASIC_DURATION, enterTransition, transitionIn, transitionOut } from './utils/modal';
 import { changeTexture } from "./utils/scene";
@@ -285,7 +286,29 @@ const informationScene = document.querySelector('.information-scene');
 const informationBtnScene = informationScene.querySelector('.scene__btn');
 
 document.addEventListener('DOMContentLoaded', () => {
-  enterTransition(transitionElement);
+  // enterTransition(transitionElement);
+
+  const navEntries = performance.getEntriesByType('navigation');
+
+  if (navEntries.length > 0 && navEntries[0].type === 'reload') {
+    // page actualisée depuis la map
+    gsap.set(transitionElement, { y: '100%' });
+
+    if (localStorage.getItem("gotTips") === "true") {
+      informationScene.dataset.active = "false";
+
+      setTimeout(() => {
+        addSprite(new THREE.Vector3(5, -1, -2.75), 'lavande');
+        addSprite(new THREE.Vector3(4, -1, 0), 'alyssum-murale');
+        
+        toggleViewElement.classList.remove('hidden');
+      }, BASIC_DURATION * 50)
+    }
+
+  } else {
+    // nouvelle venue
+    enterTransition(transitionElement);
+  }
 
   if (informationScene && informationScene.getAttribute('data-active') === 'true') {
     toggleViewElement.classList.add('hidden');
@@ -294,6 +317,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 informationBtnScene.addEventListener('click', () => {
   informationScene.dataset.active = "false";
+
+  localStorage.gotTips = true
 
   setTimeout(() => {
     addSprite(new THREE.Vector3(5, -1, -2.75), 'lavande');
