@@ -89,7 +89,7 @@ const transitionOut = (modal, transition) => {
 }
 
 const updateInformations = (modal, plant) => {
-    const { name, title, description } = plant;
+    const { name, title, description, subtitle } = plant;
 
     const marquees = modal.querySelectorAll('.marquee')
     const contentTitle = modal.querySelector('.content__title span')
@@ -97,9 +97,10 @@ const updateInformations = (modal, plant) => {
     const imgCover = modal.querySelector('.modal__header img.cover')
 
     marquees.forEach((marquee) => marquee.innerHTML = title + '&nbsp;' )
-    contentTitle.innerHTML = title
+    contentTitle.innerHTML = subtitle
     contentDescription.innerHTML = description
     imgCover.src = `./plants/${name}/cover.png`
+    imgCover.alt = `${title}`
 }
 
 export {
