@@ -104,7 +104,8 @@ body.overflow-hidden {
   height: 100dvh;
   background-color: rgba(0, 0, 0);
   position: fixed;
-  top: 100%;
+  /* top: 100%; */
+  top: 0;
   left: 0;
   will-change: transform;
   z-index: 999;

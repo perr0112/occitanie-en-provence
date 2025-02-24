@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import GUI from "lil-gui";
 
-import { BASIC_DURATION, transitionIn, transitionOut } from './utils/modal';
+import { BASIC_DURATION, enterTransition, transitionIn, transitionOut } from './utils/modal';
 import { changeTexture } from "./utils/scene";
 
 /**
@@ -285,6 +285,8 @@ const informationScene = document.querySelector('.information-scene');
 const informationBtnScene = informationScene.querySelector('.scene__btn');
 
 document.addEventListener('DOMContentLoaded', () => {
+  enterTransition(transitionElement);
+
   if (informationScene && informationScene.getAttribute('data-active') === 'true') {
     toggleViewElement.classList.add('hidden');
   }

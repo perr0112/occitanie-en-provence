@@ -6,6 +6,7 @@ gsap.registerPlugin(CustomEase);
 CustomEase.create("primary-ease", "0.62, 0.05, 0.01, 0.99");
 
 const BASIC_DURATION = 1.2;
+const btnExperience = document.querySelector('.body__btn')
 
 const loader = () => {
     const textContainers = document.querySelectorAll(".animated-title");
@@ -87,7 +88,7 @@ const changeText = () => {
 
         const words = tContainer.querySelectorAll(".word");
 
-        gsap.set('.words', {autoAlpha: 0})
+        gsap.set('.word', {autoAlpha: 0})
 
         gsap.set('.v-2', {
             autoAlpha: 1,
@@ -109,4 +110,28 @@ const changeText = () => {
 
 };
 
+const transition = () => {
+    const href = window.location.origin + "/map"
+    const transition = document.querySelector('.transition-experience')
+
+    const tl = gsap.timeline({
+        defaults: {
+            ease: "primary-ease",
+            duration: BASIC_DURATION
+        }
+    })
+
+    tl.set('html', {
+        cursor: 'progress'
+    })
+
+    tl.to(transition, {
+        y: '-100%',
+        onComplete: () => {
+            window.location.href = href;
+        }
+    })
+}
+
 document.addEventListener("DOMContentLoaded", loader);
+btnExperience.addEventListener('click', transition)

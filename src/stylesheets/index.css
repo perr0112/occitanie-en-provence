@@ -173,3 +173,15 @@ img.logo {
 .body__btn:hover::after {
   transform: translateY(-100%);
 }
+
+.transition-experience {
+  width: 100vw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0);
+  position: fixed;
+  top: 100%;
+  left: 0;
+  will-change: transform;
+  z-index: 999;
+  /* transition: transform var(--basic-duration) var(--main-transition); */
+}

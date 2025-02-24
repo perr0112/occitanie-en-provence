@@ -9,6 +9,35 @@ CustomEase.create("primary-ease", "0.62, 0.05, 0.01, 0.99")
 
 const BASIC_DURATION = 1.2
 
+const enterTransition = (transition) => {
+    const tl = gsap.timeline({
+        defaults: {
+            ease: "primary-ease",
+            duration: BASIC_DURATION
+        }
+    })
+
+    tl.set('html', {
+        cursor: 'progress'
+    })
+
+    tl.to(transition, {
+        y: '-100%'
+    })
+
+    tl.to(transition, {
+        y: '-200%'
+    })
+
+    tl.set('html', {
+        cursor: 'default'
+    }, `-=${BASIC_DURATION / 2}`)
+
+    tl.set(transition, {
+        y: '100%'
+    })
+}
+
 const transitionIn = (modal, transition, name) => {
     if (!modal || !transition || !name) return;
 
@@ -25,6 +54,10 @@ const transitionIn = (modal, transition, name) => {
         }
     })
 
+    tl.set(transition, {
+        y: '100%'
+    })
+
     tl.set('html', {
         cursor: 'progress'
     })
@@ -33,7 +66,7 @@ const transitionIn = (modal, transition, name) => {
     updateInformations(modal, plant)
 
     tl.to(transition, {
-        y: '-100%'
+        y: 0
     })
 
     tl.set(modal, {
@@ -63,12 +96,16 @@ const transitionOut = (modal, transition) => {
         }
     })
 
+    tl.set(transition, {
+        y: '100%'
+    })
+
     tl.set('html', {
         cursor: 'progress'
     })
 
     tl.to(transition, {
-        y: '-100%'
+        y: 0
     })
 
     tl.set(modal, {
@@ -106,5 +143,6 @@ const updateInformations = (modal, plant) => {
 export {
     transitionIn,
     transitionOut,
+    enterTransition,
     BASIC_DURATION
 }
