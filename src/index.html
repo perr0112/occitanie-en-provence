@@ -4,8 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>L'Occitane en Provence</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./stylesheets/index.css" />
   </head>
   <body>
+    <!--
+      logo fondu opacité 0->1 avec fond noir, et le fond noir s'en va vers le haut avec le logo
+      puis imgCover apparaît 
+    -->
+
+    <div class="container">
+      <img src="./img/intro-cover.png" alt="cover" class="cover" />
+
+      <header>
+        <img src="./icons/logo.png" alt="logo" class="logo" />
+      </header>
+
+      <!-- <div class="container__body">
+        <div class="body__text">
+          <h1 class="animated-title">
+            L’Occitane
+          </h1>
+          <h1 class="animated-title circle-icon">
+            vous invite à <span id="circle-text">Manosque</span>
+          </h1>
+        </div>
+      </div> -->
+
+      <div class="container__body">
+        <div class="body__text v-1">
+          <h1 class="animated-title">
+            L'Occitanie
+          </h1>
+
+          <h1 class="animated-title circle-icon">
+            vous invite à <span id="circle-text">Manosque</span>
+          </h1>
+        </div>
+
+        <div class="body__text v-2">
+          <h1 class="animated-title">
+            Entrez au cœur de notre univers en visitant à 360° le jardin, l’usine et la boutique musée.
+          </h1>
+
+          <div class="body__btn">
+            ENTRER DANS L'EXPÉRIENCE
+            <i class="arrow" title="arrow icon"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <script type="module" src="./intro.js"></script>
   </body>
 </html>
