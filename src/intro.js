@@ -111,7 +111,7 @@ const changeText = () => {
 };
 
 const transition = () => {
-    const href = window.location.origin + "/map"
+    const href = window.location.origin + "/map.html"
     console.log(href, window, window.location)
     const transition = document.querySelector('.transition-experience')
 
@@ -129,7 +129,7 @@ const transition = () => {
     tl.to(transition, {
         y: '-100%',
         onComplete: () => {
-            // window.location.href = href;
+            window.location.href = href;
         }
     })
 }
