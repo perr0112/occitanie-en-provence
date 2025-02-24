@@ -1,12 +1,8 @@
 {
   "routes": [
     {
-      "src": "/map",
-      "dest": "/map.html"
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
+      "src": "/(.*)",
+      "middleware": "middleware.js"
     }
   ]
 }
