@@ -44,6 +44,8 @@
   --information-icons-opacity-c1: 20%;
   --information-icons-opacity-c2: 40%;
   --information-icons-opacity-c3: 70%;
+
+  --opacity-span-after-element: 0;
 }
 
 @media screen and (max-width: 479px) {
@@ -342,6 +344,8 @@ p.content__title span::after {
   background-size: contain;
   background-repeat: no-repeat;
   z-index: -1;
+  opacity: var(--opacity-span-after-element);
+  transition: opacity calc(var(--basic-duration) * 2) var(--main-transition);
 }
 
 /*
@@ -437,10 +441,6 @@ Toggle view
   text-transform: uppercase;
 
   transition: all var(--basic-duration) var(--main-transition);
-}
-
-.toggle-view:hover .circle-inner {
-  background-color: var(--toggle-view-color-hovered);
 }
 
 /*
@@ -574,8 +574,6 @@ i.arrow {
 .scene__btn:hover::after {
   transform: translateY(-100%);
 }
-
-
 
 /* Media queries */
 

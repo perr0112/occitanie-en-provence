@@ -84,6 +84,17 @@ const transitionIn = (modal, transition, name) => {
     tl.set(transition, {
         y: '100%'
     })
+
+    tl.fromTo('.modal__content p', {
+        opacity: 0
+    }, {
+        opacity: 1,
+        stagger: 0.2,
+        onComplete: () => {
+            document.documentElement.style.setProperty("--opacity-span-after-element", "1");
+        }
+    // }, `-=${BASIC_DURATION}`)
+    }, `-=${BASIC_DURATION / 2}`)
 }
 
 const transitionOut = (modal, transition) => {
@@ -121,7 +132,10 @@ const transitionOut = (modal, transition) => {
     }, `-=${BASIC_DURATION / 2}`)
 
     tl.set(transition, {
-        y: '100%'
+        y: '100%',
+        onComplete: () => {
+            document.documentElement.style.setProperty("--opacity-span-after-element", "0");
+        }
     })
 }
 
