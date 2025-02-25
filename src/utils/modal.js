@@ -172,11 +172,11 @@ const animateDescription = (element) => {
         }
     })
 
-    tl.to('span.marquee', {
+    tl.fromTo('span.marquee', { opacity: 0 }, {
         opacity: 1
     })
 
-    tl.to('.modal__content p.content__title',
+    tl.fromTo('.modal__content p.content__title', { opacity: 0 },
     {
         opacity: 1,
         onComplete: () => {
