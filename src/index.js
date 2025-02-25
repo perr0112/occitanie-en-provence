@@ -195,7 +195,7 @@ window.addEventListener('click', (event) => {
   //   console.log(currentIntersect);
   // }
   intersects.forEach((intersect) => {
-    if (intersect.object.type === 'Sprite') {
+    if (intersect.object.type === 'Sprite' && modal.dataset.active === "false") {
       console.log(intersect.object.name)
       transitionIn(modal, transitionElement, intersect.object.name)
       modal.dataset.active = true
@@ -203,7 +203,6 @@ window.addEventListener('click', (event) => {
     }
   })
 });
-
 // Close modal
 const closeModal = document.querySelectorAll('.close-modal')
 closeModal.forEach((el) => {
