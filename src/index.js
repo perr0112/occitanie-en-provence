@@ -196,7 +196,10 @@ window.addEventListener('click', (event) => {
   //   console.log(currentIntersect);
   // }
   intersects.forEach((intersect) => {
-    if (intersect.object.type === 'Sprite' && modal.dataset.active === "false") {
+    if (intersect.object.type === 'Sprite'
+      && modal.dataset.active === "false"
+      && menuContainer.dataset.active === "false"
+    ) {
       console.log(intersect.object.name)
       transitionIn(modal, transitionElement, intersect.object.name)
       modal.dataset.active = true

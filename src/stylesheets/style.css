@@ -1,20 +1,20 @@
 @font-face {
-  font-family: 'AvenirNextLTPro';
-  src: url('../fonts/AvenirNextLTPro-Regular.otf') format('otf');
+  font-family: "AvenirNextLTPro";
+  src: url("../fonts/AvenirNextLTPro-Regular.otf") format("otf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'AvenirNextLTPro';
-  src: url('../fonts/AvenirNextLTPro-It.otf') format('otf');
+  font-family: "AvenirNextLTPro";
+  src: url("../fonts/AvenirNextLTPro-It.otf") format("otf");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'AvenirNextLTPro';
-  src: url('../fonts/AvenirNextLTPro-Bold.otf') format('otf');
+  font-family: "AvenirNextLTPro";
+  src: url("../fonts/AvenirNextLTPro-Bold.otf") format("otf");
   font-weight: bold;
   font-style: normal;
 }
@@ -38,9 +38,9 @@
   --default-font: AvenirNextLTPro, Arial, Helvetica, sans-serif;
 
   --text-color: #060524;
-  --toggle-view-color: #FFD657;
+  --toggle-view-color: #ffd657;
   --toggle-view-color-hovered: #deb129;
-  --information-scene-background: #060524B2;
+  --information-scene-background: #060524b2;
   --information-icons-opacity-c1: 20%;
   --information-icons-opacity-c2: 40%;
   --information-icons-opacity-c3: 70%;
@@ -50,32 +50,32 @@
 
 @media screen and (max-width: 479px) {
   :root {
-      --context: 375;
-      --xxl: 100rem;
-      --l: 28rem;
-      --m: 22rem;
-      --s: 16rem;
-      --xs: 12rem;
-      --p: 14rem;
-      --cta: 20rem;
-      --nav: 28rem;
-      --nav-d: 52rem;
+    --context: 375;
+    --xxl: 100rem;
+    --l: 28rem;
+    --m: 22rem;
+    --s: 16rem;
+    --xs: 12rem;
+    --p: 14rem;
+    --cta: 20rem;
+    --nav: 28rem;
+    --nav-d: 52rem;
   }
 }
 
 @media screen and (min-width: 1600px) {
   :root {
-      --context: 1880;
-      --xxl: 100rem;
-      --xl: 64rem;
-      --l: 28rem;
-      --m: 22rem;
-      --s: 16rem;
-      --xs: 12rem;
-      --p: 14rem;
-      --cta: 20rem;
-      --nav: 28rem;
-      --nav-d: 52rem;
+    --context: 1880;
+    --xxl: 100rem;
+    --xl: 64rem;
+    --l: 28rem;
+    --m: 22rem;
+    --s: 16rem;
+    --xs: 12rem;
+    --p: 14rem;
+    --cta: 20rem;
+    --nav: 28rem;
+    --nav-d: 52rem;
   }
 }
 
@@ -194,7 +194,7 @@ header img {
 }
 
 header .menu::before {
-  content: '';
+  content: "";
   width: 100%;
   height: 2px;
   top: 50%;
@@ -281,7 +281,7 @@ Modal
   /* padding-block: var(--xl); */
 }
 
-#animated-text-strip{
+#animated-text-strip {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -302,12 +302,12 @@ Modal
   }
 }
 
-#animated-text-strip{
+#animated-text-strip {
   margin: auto;
 }
 
-.marquee{
-  font-family: 'Open Sans', sans-serif;
+.marquee {
+  font-family: "Open Sans", sans-serif;
   font-size: var(--xl);
   font-weight: 900;
 }
@@ -347,7 +347,7 @@ p.content__title span {
 }
 
 p.content__title span::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: 5%;
@@ -355,7 +355,7 @@ p.content__title span::after {
   left: 50%; */
   width: 105%;
   aspect-ratio: 1;
-  background-image: url('../icons/circle.png');
+  background-image: url("../icons/circle.png");
   background-size: contain;
   background-repeat: no-repeat;
   z-index: -1;
@@ -405,7 +405,7 @@ Toggle view
   bottom: var(--l);
   left: 50%;
   z-index: 10;
-  
+
   opacity: 1;
   visibility: visible;
   font-size: var(--xs);
@@ -420,11 +420,9 @@ Toggle view
   border: 3px solid var(--toggle-view-color);
   cursor: pointer;
 
-  transition:
-    padding calc(var(--basic-duration) * 1) var(--main-transition),
+  transition: padding calc(var(--basic-duration) * 1) var(--main-transition),
     opacity calc(var(--basic-duration) * 2) var(--main-transition),
-    visibility calc(var(--basic-duration) * 2) var(--main-transition)
-  ;
+    visibility calc(var(--basic-duration) * 2) var(--main-transition);
 }
 
 .toggle-view:hover {
@@ -539,7 +537,6 @@ Information scene
   overflow: hidden;
 
   transition: color calc(var(--basic-duration) * 1.5) var(--main-transition);
-
 }
 
 i.arrow {
@@ -561,7 +558,7 @@ i.arrow {
 }
 
 .scene__btn::after {
-  content: '';
+  content: "";
   width: calc(100% + 2px);
   height: calc(100% + 2px);
   position: absolute;
@@ -602,6 +599,9 @@ Menu
   z-index: 9990;
   width: 100vw;
   height: 100dvh;
+
+  opacity: 0;
+  visibility: hidden;
 }
 
 .container__cover {
@@ -613,6 +613,8 @@ Menu
   left: 0;
   pointer-events: none;
   user-select: none;
+
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
 }
 
 .container__boxs {
@@ -657,6 +659,7 @@ Menu
   height: 100%;
   object-fit: cover;
   cursor: pointer;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
 }
 
 .box h3.box__title {
@@ -666,10 +669,12 @@ Menu
   position: absolute;
   color: white;
   z-index: 999999;
+
+  opacity: 0;
 }
 
 .box::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -680,10 +685,9 @@ Menu
   transition: all var(--basic-duration) var(--main-transition);
 }
 
-.box:hover::after {
+.menu-container[data-active="true"] .box:hover::after {
   background-color: rgba(0, 0, 0, 0.4);
 }
-
 
 /* Media queries */
 
@@ -697,7 +701,7 @@ Menu
   .modal__content p.content__title {
     font-size: var(--l);
   }
-  
+
   .modal__content p.content__desc {
     font-size: var(--m);
   }
@@ -711,16 +715,16 @@ Menu
 
 @media screen and (max-width: 800px) {
   :root {
-      --context: 800;
-      --xxl: 100rem;
-      --l: 28rem;
-      --m: 22rem;
-      --s: 16rem;
-      --xs: 12rem;
-      --p: 14rem;
-      --cta: 20rem;
-      --nav: 28rem;
-      --nav-d: 52rem;
+    --context: 800;
+    --xxl: 100rem;
+    --l: 28rem;
+    --m: 22rem;
+    --s: 16rem;
+    --xs: 12rem;
+    --p: 14rem;
+    --cta: 20rem;
+    --nav: 28rem;
+    --nav-d: 52rem;
   }
 
   header a {
@@ -730,16 +734,16 @@ Menu
 
 @media screen and (min-width: 1600px) {
   :root {
-      --context: 1880;
-      --xxl: 100rem;
-      --xl: 64rem;
-      --l: 28rem;
-      --m: 22rem;
-      --s: 16rem;
-      --xs: 12rem;
-      --p: 14rem;
-      --cta: 20rem;
-      --nav: 28rem;
-      --nav-d: 52rem;
+    --context: 1880;
+    --xxl: 100rem;
+    --xl: 64rem;
+    --l: 28rem;
+    --m: 22rem;
+    --s: 16rem;
+    --xs: 12rem;
+    --p: 14rem;
+    --cta: 20rem;
+    --nav: 28rem;
+    --nav-d: 52rem;
   }
 }

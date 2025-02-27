@@ -1,4 +1,9 @@
 import gsap from 'gsap';
+import CustomEase from 'gsap/CustomEase';
+
+const BASIC_DURATION = 1.2;
+
+CustomEase.create("primary-ease", "0.62, 0.05, 0.01, 0.99")
 
 const handleMenu = (menu) => {
     const containerBoxs = menu.querySelector('.container__boxs')
@@ -69,7 +74,55 @@ const handleMenu = (menu) => {
     })
 }
 
-const toggleMenu = () => {
+const toggleMenu = (menu) => {
+    const isOpening = menu.dataset.active === "false";
+    menu.dataset.active = isOpening;
+
+    const tl = gsap.timeline({
+        defaults: {
+            duration: BASIC_DURATION,
+            ease: "primary-ease"
+        }
+    });
+
+    if (isOpening) {
+        tl.set(menu, {
+            autoAlpha: 1
+        })
+
+        tl.to('.container__cover', {
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0 100%)',
+        })
+
+        tl.to('.box img', {
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0 100%)',
+            stagger: BASIC_DURATION / 6,
+        }, `-=${BASIC_DURATION / 2}`)
+
+        tl.to('.box h3', {
+            opacity: 1,
+            stagger: BASIC_DURATION / 6,
+        }, `-=${BASIC_DURATION / 12}`);
+
+    } else {
+        tl.to('.box h3', {
+            opacity: 0,
+            stagger: BASIC_DURATION / 6,
+        })
+
+        tl.to('.box img', {
+            clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0 100%)',
+            stagger: BASIC_DURATION / 6,
+        }, `-=${BASIC_DURATION / 2}`)
+
+        tl.to('.container__cover', {
+            clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0 100%)',
+        })
+
+        tl.set(menu, {
+            autoAlpha: 0
+        });
+    }
 }
 
 export {
