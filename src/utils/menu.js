@@ -90,6 +90,10 @@ const toggleMenu = (menu) => {
             autoAlpha: 1
         })
 
+        tl.set('html', {
+            cursor: 'progress'
+        })
+
         tl.to('.container__cover', {
             clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0 100%)',
         })
@@ -99,12 +103,20 @@ const toggleMenu = (menu) => {
             stagger: BASIC_DURATION / 6,
         }, `-=${BASIC_DURATION / 2}`)
 
+        tl.set('html', {
+            cursor: 'default'
+        })
+
         tl.to('.box h3', {
             opacity: 1,
             stagger: BASIC_DURATION / 6,
         }, `-=${BASIC_DURATION / 12}`);
 
     } else {
+        tl.set('html', {
+            cursor: 'progress'
+        })
+
         tl.to('.box h3', {
             opacity: 0,
             stagger: BASIC_DURATION / 6,
@@ -118,6 +130,10 @@ const toggleMenu = (menu) => {
         tl.to('.container__cover', {
             clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0 100%)',
         }, `-=${BASIC_DURATION / 2}`)
+
+        tl.set('html', {
+            cursor: 'default'
+        })
 
         tl.set(menu, {
             autoAlpha: 0
