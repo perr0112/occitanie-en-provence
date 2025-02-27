@@ -97,6 +97,7 @@ const transitionIn = (modal, transition, name) => {
 }
 
 const transitionOut = (modal, transition) => {
+    const pContent = document.querySelector('p.content__title');
     if (!modal || !transition) return;
 
     const tl = gsap.timeline({
@@ -134,6 +135,7 @@ const transitionOut = (modal, transition) => {
         y: '100%',
         onComplete: () => {
             document.documentElement.style.setProperty("--opacity-span-after-element", "0");
+            pContent.style.opacity = 0;
         }
     })
 }
@@ -176,7 +178,7 @@ const animateDescription = (element) => {
         opacity: 1
     })
 
-    tl.fromTo('.modal__content p.content__title', { opacity: 0 },
+    tl.to('.modal__content p.content__title',
     {
         opacity: 1,
         onComplete: () => {
