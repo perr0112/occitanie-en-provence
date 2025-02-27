@@ -113,11 +113,11 @@ const toggleMenu = (menu) => {
         tl.to('.box img', {
             clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0 100%)',
             stagger: BASIC_DURATION / 6,
-        }, `-=${BASIC_DURATION / 2}`)
+        }, `-=${BASIC_DURATION / 6}`)
 
         tl.to('.container__cover', {
             clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0 100%)',
-        })
+        }, `-=${BASIC_DURATION / 2}`)
 
         tl.set(menu, {
             autoAlpha: 0
