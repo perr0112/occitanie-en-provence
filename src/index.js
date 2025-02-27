@@ -5,6 +5,7 @@ import gsap from "gsap";
 
 import { BASIC_DURATION, enterTransition, transitionIn, transitionOut } from './utils/modal';
 import { changeTexture } from "./utils/scene";
+import { handleMenu, toggleMenu } from "./utils/menu";
 
 /**
  * Debug
@@ -284,6 +285,9 @@ tick();
 const informationScene = document.querySelector('.information-scene');
 const informationBtnScene = informationScene.querySelector('.scene__btn');
 
+const menuBtn = document.querySelector('.menu');
+const menuContainer = document.querySelector('.menu-container');
+
 document.addEventListener('DOMContentLoaded', () => {
   // enterTransition(transitionElement);
 
@@ -312,6 +316,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (informationScene && informationScene.getAttribute('data-active') === 'true') {
     toggleViewElement.classList.add('hidden');
   }
+
+  handleMenu(menuContainer)
 });
 
 informationBtnScene.addEventListener('click', () => {
@@ -326,3 +332,10 @@ informationBtnScene.addEventListener('click', () => {
     toggleViewElement.classList.remove('hidden');
   }, BASIC_DURATION * 50)
 })
+
+
+/**
+ * Menu
+ */
+
+menuBtn.addEventListener('click', () => toggleMenu(menuContainer))

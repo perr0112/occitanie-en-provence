@@ -260,6 +260,8 @@ Modal
 
 .modal__header .header__icon {
   position: absolute;
+  mix-blend-mode: difference;
+  color: white;
   /* width: var(--l); */
   width: 35px;
   aspect-ratio: 1;
@@ -587,6 +589,101 @@ i.arrow {
 .scene__btn:hover::after {
   transform: translateY(-100%);
 }
+
+/*
+***************
+Menu
+***************
+*/
+
+.menu-container {
+  /* background-color: red; */
+  position: fixed;
+  z-index: 9990;
+  width: 100vw;
+  height: 100dvh;
+}
+
+.container__cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.container__boxs {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* background-color: orange; */
+  cursor: grab;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-left: 25%;
+  transform: rotate(-2.5deg);
+}
+
+.container__boxs .boxs {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: var(--l);
+  width: 165%;
+  height: calc(175% / 3);
+  user-select: none;
+}
+
+.boxs .box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* aspect-ratio: 1; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.box h3.box__title {
+  font-size: var(--l);
+  text-align: center;
+  font-weight: 600;
+  position: absolute;
+  color: white;
+  z-index: 999999;
+}
+
+.box::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  transition: all var(--basic-duration) var(--main-transition);
+}
+
+.box:hover::after {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 
 /* Media queries */
 
